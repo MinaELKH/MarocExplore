@@ -11,6 +11,7 @@ class QueryBuilderController extends Controller
 {
     //• Requête pour récupérer tous les itinéraires avec leurs destinations
     //http://127.0.0.1:8000/api/itineraries/All
+    //Route::get('/itineraries/All' , [QueryBuilderController::class , 'ItinerariesWithDestinations'])->name('statistiques.All');
     public function ItinerariesWithDestinations()
     {
         //Requête pour récupérer tous les itinéraires avec leurs destinations

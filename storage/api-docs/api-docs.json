@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "MarocExplore API",
+        "description": "Documentation de l'API pour MarocExplore",
+        "contact": {
+            "email": "contact@marocexplore.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/itineraries": {
+            "get": {
+                "tags": [
+                    "Itineraries"
+                ],
+                "summary": "Récupérer tous les itinéraires",
+                "description": "Retourne une liste de tous les itinéraires disponibles avec leurs catégories associées.",
+                "operationId": "getItineraries",
+                "responses": {
+                    "200": {
+                        "description": "Liste des itinéraires récupérée avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Visite de Casablanca"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Découverte de la ville"
+                                            },
+                                            "duration": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "image": {
+                                                "type": "string",
+                                                "example": "https://marocexplore.com/images/ile_paris.jpg"
+                                            },
+                                            "category": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Nature"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-03-14T12:10:05.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-03-14T12:10:05.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Itineraries",
+            "description": "Itineraries"
+        }
+    ]
+}

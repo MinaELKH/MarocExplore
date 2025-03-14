@@ -5,9 +5,53 @@ use App\Models\itinerary;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="MarocExplore API",
+ *      description="Documentation de l'API pour MarocExplore",
+ *      @OA\Contact(
+ *          email="contact@marocexplore.com"
+ *      ),
+ *      @OA\License(
+ *          name="Apache 2.0",
+ *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *      )
+ * )
+ */
 class ItineraryController extends Controller
 {
     // list all the itinerary
+    /**
+     * @OA\Get(
+     *     path="/api/itineraries",
+     *     summary="Récupérer tous les itinéraires",
+     *     description="Retourne une liste de tous les itinéraires disponibles avec leurs catégories associées.",
+     *     operationId="getItineraries",
+     *     tags={"Itineraries"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Liste des itinéraires récupérée avec succès",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer", example=1),
+     *                 @OA\Property(property="title", type="string", example="Visite de Casablanca"),
+     *                 @OA\Property(property="description", type="string", example="Découverte de la ville"),
+     *                 @OA\Property(property="duration", type="integer", example=3),
+     *                 @OA\Property(property="image", type="string", example="https://marocexplore.com/images/ile_paris.jpg"),
+     *                 @OA\Property(property="category", type="object",
+     *                     @OA\Property(property="id", type="integer", example=2),
+     *                     @OA\Property(property="name", type="string", example="Nature")
+     *                 ),
+     *                 @OA\Property(property="created_at", type="string", format="date-time", example="2025-03-14T12:10:05.000000Z"),
+     *                 @OA\Property(property="updated_at", type="string", format="date-time", example="2025-03-14T12:10:05.000000Z")
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function index(){
         $allItinerary = itinerary::with('category')->get();
         return response()->json($allItinerary);
